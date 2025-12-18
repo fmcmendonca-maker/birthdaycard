@@ -1452,6 +1452,763 @@
         100% { background-position: 0% 50%; }
     }
 
+    /* ========== SCRATCH CARD ========== */
+    .scratch-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .scratch-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .section-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .scratch-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .scratch-container {
+        position: relative;
+        width: 320px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .scratch-reveal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff6b9d, #ffc107);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .scratch-message {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .scratch-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: crosshair;
+        border-radius: 20px;
+    }
+
+    .scratch-hint {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .scratch-card {
+        position: relative;
+        width: 300px;
+        height: 200px;
+        margin: 0 auto;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .scratch-message {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #ff6b9d, #ffc107);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .scratch-emoji {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+
+    .scratch-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.5rem;
+        color: #fff;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .scratch-btn {
+        margin-top: 30px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, #ffc107, #ff6b9d);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+    }
+
+    .scratch-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 193, 7, 0.6);
+    }
+
+    /* ========== SPIN WHEEL ========== */
+    .spin-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .spin-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .wheel-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .wheel-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .wheel-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .wheel-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .wheel {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        position: relative;
+        transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+        box-shadow: 0 0 30px rgba(255, 107, 157, 0.5), 0 0 60px rgba(255, 193, 7, 0.3);
+    }
+
+    .wheel-pointer {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 40px solid #fff;
+        z-index: 10;
+        filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.3));
+    }
+
+    .wheel-center {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b9d, #ffc107);
+        border-radius: 50%;
+        border: 4px solid #fff;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    .wheel-center:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    .wheel-result {
+        margin-top: 30px;
+        padding: 20px 40px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: none;
+    }
+
+    .wheel-result.show {
+        display: block;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    .wheel-result-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        background: linear-gradient(90deg, #ff6b9d, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .wheel-segment {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        left: 50%;
+        top: 0;
+        transform-origin: 0% 100%;
+        transform: rotate(calc(var(--i) * 45deg)) skewY(-45deg);
+        background: var(--color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    .wheel-segment span {
+        transform: skewY(45deg) rotate(22.5deg);
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 40%;
+        left: 30%;
+    }
+
+    .spin-btn {
+        margin-top: 30px;
+        padding: 18px 50px;
+        background: linear-gradient(135deg, #9c27b0, #ff6b9d);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(156, 39, 176, 0.4);
+    }
+
+    .spin-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(156, 39, 176, 0.6);
+    }
+
+    .spin-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .prize-emoji {
+        font-size: 2rem;
+        margin-right: 10px;
+    }
+
+    /* ========== LOVE LETTER GENERATOR ========== */
+    .love-letter-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .love-letter-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .letter-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .letter-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .letter-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 30px;
+        font-style: italic;
+    }
+
+    .letter-card {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 40px;
+        background: linear-gradient(145deg, #f5e6d3, #e8d5c4);
+        border-radius: 10px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        position: relative;
+        min-height: 250px;
+    }
+
+    .letter-card::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid rgba(255, 107, 157, 0.3);
+        border-radius: 5px;
+        pointer-events: none;
+    }
+
+    .letter-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.8rem;
+        color: #4a3728;
+        line-height: 1.6;
+        min-height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .letter-box {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 40px;
+        background: linear-gradient(145deg, #f5e6d3, #e8d5c4);
+        border-radius: 10px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        position: relative;
+        min-height: 250px;
+        transition: all 0.3s ease;
+    }
+
+    .letter-box::before {
+        content: '';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        border: 2px solid rgba(255, 107, 157, 0.3);
+        border-radius: 5px;
+        pointer-events: none;
+    }
+
+    .letter-header {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.8rem;
+        color: #8b4d6b;
+        margin-bottom: 20px;
+    }
+
+    .letter-content {
+        font-family: 'Georgia', serif;
+        font-size: 1rem;
+        color: #4a3728;
+        line-height: 1.8;
+        transition: opacity 0.3s ease;
+    }
+
+    .letter-content p {
+        margin-bottom: 15px;
+    }
+
+    @keyframes letterGlow {
+        0% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+        50% { box-shadow: 0 20px 60px rgba(255, 107, 157, 0.5), 0 0 30px rgba(255, 193, 7, 0.3); }
+        100% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); }
+    }
+
+    .letter-signature {
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.5rem;
+        color: #8b4d6b;
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .letter-btn {
+        margin-top: 30px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, #ff6b9d, #c084fc);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    }
+
+    .letter-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    /* ========== VIRTUAL CANDLES ========== */
+    .candles-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .candles-section h2 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .candles-subtitle {
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    .candles-instruction {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 30px;
+        font-size: 0.9rem;
+        padding: 15px 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 30px;
+        display: inline-block;
+    }
+
+    .cake-container {
+        position: relative;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    .cake {
+        width: 100%;
+        height: 150px;
+        background: linear-gradient(180deg, #8B4513 0%, #D2691E 50%, #8B4513 100%);
+        border-radius: 20px 20px 30px 30px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .cake::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(180deg, #ff6b9d 0%, #ff8fab 100%);
+        border-radius: 20px 20px 0 0;
+    }
+
+    .cake::after {
+        content: '🎂';
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3rem;
+    }
+
+    .candles-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-bottom: 20px;
+        max-width: 350px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .candle {
+        width: 8px;
+        height: 40px;
+        background: linear-gradient(180deg, #ffc107 0%, #ff9800 100%);
+        border-radius: 2px 2px 0 0;
+        position: relative;
+    }
+
+    .candle-flame {
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 20px;
+        background: radial-gradient(ellipse at bottom, #ffc107 0%, #ff6b00 40%, #ff0000 100%);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        animation: flicker 0.3s ease-in-out infinite alternate;
+        box-shadow: 0 0 10px #ffc107, 0 0 20px #ff6b00, 0 0 30px #ff0000;
+    }
+
+    .candle-flame.blown {
+        animation: blowOut 0.5s ease-out forwards;
+    }
+
+    @keyframes flicker {
+        0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+        100% { transform: translateX(-50%) scale(1.1) rotate(2deg); }
+    }
+
+    @keyframes blowOut {
+        0% { opacity: 1; transform: translateX(-50%) scale(1); }
+        50% { opacity: 0.5; transform: translateX(-50%) scale(1.5) translateY(-10px); }
+        100% { opacity: 0; transform: translateX(-50%) scale(0) translateY(-20px); }
+    }
+
+    .candles-counter {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .candles-counter span {
+        font-size: 2rem;
+        font-weight: bold;
+        background: linear-gradient(90deg, #ff6b9d, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .blow-btn {
+        margin-top: 20px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, #ff6b9d, #ffc107);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    }
+
+    .blow-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    .candles-reset-btn {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding: 12px 30px;
+        background: linear-gradient(135deg, #4caf50, #8bc34a);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    }
+
+    .candles-reset-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 30px rgba(76, 175, 80, 0.6);
+    }
+
+    .birthday-cake {
+        position: relative;
+        max-width: 350px;
+        margin: 0 auto 20px;
+    }
+
+    .cake-layers {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cake-layer {
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .cake-layer.layer-1 {
+        width: 300px;
+        height: 60px;
+        background: linear-gradient(180deg, #ff8fab, #ff6b9d);
+    }
+
+    .cake-layer.layer-2 {
+        width: 250px;
+        height: 50px;
+        background: linear-gradient(180deg, #f5e6d3, #e8d5c4);
+        margin-top: -5px;
+    }
+
+    .cake-layer.layer-3 {
+        width: 200px;
+        height: 45px;
+        background: linear-gradient(180deg, #ffc107, #ff9800);
+        margin-top: -5px;
+    }
+
+    .candle {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .candle:hover {
+        transform: scale(1.1);
+    }
+
+    .candle-body {
+        width: 6px;
+        height: 25px;
+        background: linear-gradient(180deg, #ffc107, #ff9800);
+        border-radius: 2px;
+    }
+
+    .flame {
+        width: 10px;
+        height: 18px;
+        background: radial-gradient(ellipse at bottom, #ffc107 0%, #ff6b00 40%, #ff0000 100%);
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        animation: flicker 0.3s ease-in-out infinite alternate;
+        box-shadow: 0 0 8px #ffc107, 0 0 15px #ff6b00, 0 0 25px #ff0000;
+        transition: all 0.3s ease;
+    }
+
+    .flame-inner {
+        width: 4px;
+        height: 8px;
+        background: #fff;
+        border-radius: 50%;
+        margin: 3px auto 0;
+        opacity: 0.8;
+    }
+
+    .flame.flame-off {
+        animation: blowOut 0.5s ease-out forwards;
+    }
+
+    @keyframes flicker {
+        0% { transform: scale(1) rotate(-2deg); }
+        100% { transform: scale(1.1) rotate(2deg); }
+    }
+
+    @keyframes blowOut {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(1.5) translateY(-10px); }
+        100% { opacity: 0; transform: scale(0) translateY(-20px); height: 0; }
+    }
+
+    .blow-message {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        font-family: 'Great Vibes', cursive;
+        font-size: 1.5rem;
+        color: #fff;
+    }
+
+    .candles-complete {
+        display: none;
+        margin-top: 30px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+    }
+
+    .candles-complete.show {
+        display: block;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    .candles-complete-text {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        background: linear-gradient(90deg, #ff6b9d, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* ========== SHAKE TO CELEBRATE ========== */
+    .shake-indicator {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 15px 30px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        z-index: 1000;
+        display: none;
+        animation: shake-hint 1s ease-in-out infinite;
+    }
+
+    .shake-indicator.show {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @keyframes shake-hint {
+        0%, 100% { transform: translateX(-50%) rotate(-5deg); }
+        50% { transform: translateX(-50%) rotate(5deg); }
+    }
+
+    .shake-icon {
+        font-size: 1.5rem;
+    }
+
+    .shake-text {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
     /* ========== MEMORY GAME ========== */
     .memory-game-section {
         padding: 80px 20px;
@@ -1949,6 +2706,136 @@
             <div class="win-title">Bravissima! 🎉</div>
             <div class="win-subtitle">Hai trovato tutte le coppie in <span id="finalMoves">0</span> mosse!</div>
         </div>
+    </div>
+</section>
+
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-ornament">🎁</div>
+    <div class="divider-line"></div>
+</div>
+
+<!-- SCRATCH CARD SECTION -->
+<section class="scratch-section">
+    <div class="container">
+        <h2>✨ Gratta e Scopri ✨</h2>
+        <p class="section-subtitle">Gratta la carta per scoprire un messaggio speciale!</p>
+        
+        <div class="scratch-card" id="scratchCard">
+            <div class="scratch-message" id="scratchMessage">
+                <div class="scratch-emoji">💖</div>
+                <div class="scratch-text">Sei la cosa più bella che mi sia mai capitata nella vita!</div>
+            </div>
+            <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+        </div>
+        
+        <button class="scratch-btn" onclick="resetScratchCard()">🔄 Nuova Carta</button>
+    </div>
+</section>
+
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-ornament">🎡</div>
+    <div class="divider-line"></div>
+</div>
+
+<!-- SPIN THE WHEEL SECTION -->
+<section class="spin-section">
+    <div class="container">
+        <h2>🎡 Ruota della Fortuna 🎡</h2>
+        <p class="section-subtitle">Gira la ruota per scoprire cosa ti aspetta!</p>
+        
+        <div class="wheel-container">
+            <div class="wheel-pointer">▼</div>
+            <div class="wheel" id="wheel">
+                <div class="wheel-segment" style="--i: 0; --color: #ff6b9d;">
+                    <span>Bacio</span>
+                </div>
+                <div class="wheel-segment" style="--i: 1; --color: #9c27b0;">
+                    <span>Abbraccio</span>
+                </div>
+                <div class="wheel-segment" style="--i: 2; --color: #2196f3;">
+                    <span>Cena</span>
+                </div>
+                <div class="wheel-segment" style="--i: 3; --color: #4caf50;">
+                    <span>Massaggio</span>
+                </div>
+                <div class="wheel-segment" style="--i: 4; --color: #ff9800;">
+                    <span>Viaggio</span>
+                </div>
+                <div class="wheel-segment" style="--i: 5; --color: #e91e63;">
+                    <span>Sorpresa</span>
+                </div>
+                <div class="wheel-segment" style="--i: 6; --color: #00bcd4;">
+                    <span>Cinema</span>
+                </div>
+                <div class="wheel-segment" style="--i: 7; --color: #ffc107;">
+                    <span>Ti Amo!</span>
+                </div>
+            </div>
+        </div>
+        
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎰 Gira la Ruota!</button>
+        
+        <div class="wheel-result" id="wheelResult"></div>
+    </div>
+</section>
+
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-ornament">💌</div>
+    <div class="divider-line"></div>
+</div>
+
+<!-- LOVE LETTER GENERATOR SECTION -->
+<section class="love-letter-section">
+    <div class="container">
+        <h2>💌 Lettera d'Amore 💌</h2>
+        <p class="section-subtitle">Genera una lettera d'amore speciale solo per te!</p>
+        
+        <div class="letter-box" id="letterBox">
+            <div class="letter-header">Mia Carissima Principessa,</div>
+            <div class="letter-content" id="letterContent">
+                Clicca il bottone per generare una lettera d'amore unica...
+            </div>
+            <div class="letter-signature">Con tutto il mio amore,<br>Il tuo innamorato 💕</div>
+        </div>
+        
+        <button class="letter-btn" onclick="generateLoveLetter()">✨ Genera Lettera</button>
+    </div>
+</section>
+
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-ornament">🎂</div>
+    <div class="divider-line"></div>
+</div>
+
+<!-- VIRTUAL CANDLES SECTION -->
+<section class="candles-section">
+    <div class="container">
+        <h2>🎂 55 Candeline 🎂</h2>
+        <p class="section-subtitle">Soffia sulle candeline per spegnerle! (usa il microfono o clicca)</p>
+        
+        <div class="birthday-cake" id="birthdayCake">
+            <div class="cake-layers">
+                <div class="cake-layer layer-1"></div>
+                <div class="cake-layer layer-2"></div>
+                <div class="cake-layer layer-3"></div>
+            </div>
+            <div class="candles-container" id="candlesContainer">
+                <!-- 55 candles will be generated by JavaScript -->
+            </div>
+        </div>
+        
+        <div class="candles-counter">
+            <span id="candlesLit">55</span> candeline accese
+        </div>
+        
+        <button class="blow-btn" id="blowBtn" onclick="blowCandles()">💨 Soffia!</button>
+        <button class="candles-reset-btn" onclick="resetCandles()">🔄 Riaccendi</button>
+        
+        <div class="blow-message" id="blowMessage"></div>
     </div>
 </section>
 
@@ -2698,6 +3585,471 @@
 
     // Initialize game on page load
     setTimeout(initMemoryGame, 100);
+
+    // ========== SCRATCH CARD ==========
+    let isScratching = false;
+    let scratchCanvas, scratchCtx;
+    const scratchMessages = [
+        { emoji: '💖', text: 'Sei la cosa più bella che mi sia mai capitata nella vita!' },
+        { emoji: '🌟', text: 'Ogni giorno con te è un regalo prezioso!' },
+        { emoji: '💕', text: 'Il mio cuore batte solo per te, oggi e sempre!' },
+        { emoji: '🦋', text: 'Sei la mia farfalla, porti colore nella mia vita!' },
+        { emoji: '🌹', text: 'Come una rosa, sei bella e unica al mondo!' },
+        { emoji: '💎', text: 'Sei il mio tesoro più prezioso!' },
+        { emoji: '🌈', text: 'Sei il mio arcobaleno dopo ogni tempesta!' },
+        { emoji: '⭐', text: 'Sei la stella che illumina le mie notti!' },
+        { emoji: '🔥', text: 'Il nostro amore brucia più forte ogni giorno!' },
+        { emoji: '🎁', text: 'Tu sei il regalo più bello della mia vita!' }
+    ];
+
+    function initScratchCard() {
+        scratchCanvas = document.getElementById('scratchCanvas');
+        if (!scratchCanvas) return;
+        
+        scratchCtx = scratchCanvas.getContext('2d');
+        scratchCanvas.width = 300;
+        scratchCanvas.height = 200;
+        
+        // Draw scratch surface
+        const gradient = scratchCtx.createLinearGradient(0, 0, 300, 200);
+        gradient.addColorStop(0, '#c9a227');
+        gradient.addColorStop(0.5, '#e8d48b');
+        gradient.addColorStop(1, '#c9a227');
+        scratchCtx.fillStyle = gradient;
+        scratchCtx.fillRect(0, 0, 300, 200);
+        
+        // Add text
+        scratchCtx.fillStyle = '#8b6914';
+        scratchCtx.font = 'bold 20px Arial';
+        scratchCtx.textAlign = 'center';
+        scratchCtx.fillText('✨ GRATTA QUI ✨', 150, 100);
+        scratchCtx.font = '14px Arial';
+        scratchCtx.fillText('Scopri il messaggio', 150, 130);
+        
+        // Mouse events
+        scratchCanvas.addEventListener('mousedown', startScratch);
+        scratchCanvas.addEventListener('mousemove', scratch);
+        scratchCanvas.addEventListener('mouseup', stopScratch);
+        scratchCanvas.addEventListener('mouseleave', stopScratch);
+        
+        // Touch events
+        scratchCanvas.addEventListener('touchstart', startScratch);
+        scratchCanvas.addEventListener('touchmove', scratch);
+        scratchCanvas.addEventListener('touchend', stopScratch);
+    }
+
+    function startScratch(e) {
+        isScratching = true;
+        scratch(e);
+    }
+
+    function scratch(e) {
+        if (!isScratching) return;
+        
+        const rect = scratchCanvas.getBoundingClientRect();
+        let x, y;
+        
+        if (e.touches) {
+            x = e.touches[0].clientX - rect.left;
+            y = e.touches[0].clientY - rect.top;
+        } else {
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
+        }
+        
+        scratchCtx.globalCompositeOperation = 'destination-out';
+        scratchCtx.beginPath();
+        scratchCtx.arc(x, y, 25, 0, Math.PI * 2);
+        scratchCtx.fill();
+    }
+
+    function stopScratch() {
+        isScratching = false;
+    }
+
+    function resetScratchCard() {
+        // Change message
+        const msg = scratchMessages[Math.floor(Math.random() * scratchMessages.length)];
+        document.querySelector('.scratch-emoji').textContent = msg.emoji;
+        document.querySelector('.scratch-text').textContent = msg.text;
+        
+        // Reinitialize canvas
+        initScratchCard();
+    }
+
+    // ========== SPIN THE WHEEL ==========
+    let isSpinning = false;
+    let wheelRotation = 0;
+    const wheelPrizes = [
+        { name: 'Bacio', emoji: '💋', message: 'Hai vinto un bacio appassionato!' },
+        { name: 'Abbraccio', emoji: '🤗', message: 'Hai vinto un abbraccio fortissimo!' },
+        { name: 'Cena', emoji: '🍽️', message: 'Hai vinto una cena romantica!' },
+        { name: 'Massaggio', emoji: '💆', message: 'Hai vinto un massaggio rilassante!' },
+        { name: 'Viaggio', emoji: '✈️', message: 'Hai vinto un viaggio insieme!' },
+        { name: 'Sorpresa', emoji: '🎁', message: 'Hai vinto una sorpresa speciale!' },
+        { name: 'Cinema', emoji: '🎬', message: 'Hai vinto una serata al cinema!' },
+        { name: 'Ti Amo!', emoji: '❤️', message: 'Ti amo infinitamente!' }
+    ];
+
+    function spinWheel() {
+        if (isSpinning) return;
+        isSpinning = true;
+        
+        const spinBtn = document.getElementById('spinBtn');
+        const wheel = document.getElementById('wheel');
+        const resultDiv = document.getElementById('wheelResult');
+        
+        spinBtn.disabled = true;
+        resultDiv.textContent = '';
+        resultDiv.style.display = 'none';
+        
+        // Random rotation (5-10 full spins + random position)
+        const spins = 5 + Math.random() * 5;
+        const randomAngle = Math.random() * 360;
+        const totalRotation = spins * 360 + randomAngle;
+        
+        wheelRotation += totalRotation;
+        wheel.style.transform = `rotate(${wheelRotation}deg)`;
+        
+        // Calculate winner after spin
+        setTimeout(() => {
+            // Each segment is 45 degrees (360/8)
+            const normalizedRotation = wheelRotation % 360;
+            const segmentAngle = 360 / 8;
+            // The pointer is at top, so we need to adjust
+            const winningIndex = Math.floor((360 - normalizedRotation + segmentAngle / 2) / segmentAngle) % 8;
+            
+            const prize = wheelPrizes[winningIndex];
+            resultDiv.innerHTML = `<span class="prize-emoji">${prize.emoji}</span> ${prize.message}`;
+            resultDiv.style.display = 'block';
+            
+            // Celebration
+            createConfetti();
+            
+            isSpinning = false;
+            spinBtn.disabled = false;
+        }, 5000);
+    }
+
+    // ========== LOVE LETTER GENERATOR ==========
+    const letterOpenings = [
+        "In questo giorno speciale, voglio dirti quanto sei importante per me.",
+        "Ogni volta che ti guardo, il mio cuore si riempie di gioia infinita.",
+        "55 anni di vita meravigliosa, e ogni giorno sei sempre più bella.",
+        "Non esistono parole sufficienti per descrivere quanto ti amo.",
+        "Sei la mia principessa, la mia regina, il mio tutto."
+    ];
+
+    const letterMiddles = [
+        "I tuoi occhi brillano come stelle, illuminando ogni mio giorno. Il tuo sorriso è la mia medicina, la tua voce è la mia musica preferita.",
+        "Ogni momento passato insieme è un tesoro che custodisco nel cuore. Sei la persona più speciale che conosca.",
+        "Mi hai insegnato cosa significa amare veramente. Con te ho scoperto la felicità più pura.",
+        "Quando ti vedo, il mondo si ferma. Sei la ragione per cui sorrido ogni mattina.",
+        "La tua gentilezza, la tua forza, la tua bellezza mi conquistano ogni giorno di più."
+    ];
+
+    const letterClosings = [
+        "Prometto di amarti oggi, domani e per sempre. Sei il mio destino, la mia anima gemella.",
+        "Che questi 55 anni siano solo l'inizio di infinite avventure insieme. Ti amo più della vita stessa.",
+        "Buon compleanno, amore mio. Che ogni tuo desiderio si avveri, perché tu meriti tutto il bello del mondo.",
+        "Grazie per essere entrata nella mia vita. Sei il regalo più prezioso che potessi mai ricevere.",
+        "Con te, ogni giorno è una festa. Ti amo immensamente, mia adorata principessa."
+    ];
+
+    function generateLoveLetter() {
+        const opening = letterOpenings[Math.floor(Math.random() * letterOpenings.length)];
+        const middle = letterMiddles[Math.floor(Math.random() * letterMiddles.length)];
+        const closing = letterClosings[Math.floor(Math.random() * letterClosings.length)];
+        
+        const letterContent = document.getElementById('letterContent');
+        letterContent.style.opacity = '0';
+        
+        setTimeout(() => {
+            letterContent.innerHTML = `<p>${opening}</p><p>${middle}</p><p>${closing}</p>`;
+            letterContent.style.opacity = '1';
+        }, 300);
+        
+        // Add sparkle effect
+        const letterBox = document.getElementById('letterBox');
+        letterBox.style.animation = 'none';
+        setTimeout(() => {
+            letterBox.style.animation = 'letterGlow 1s ease-in-out';
+        }, 10);
+    }
+
+    // ========== VIRTUAL CANDLES ==========
+    let candlesLit = 55;
+    let audioContext, analyser, microphone;
+    let blowDetectionActive = false;
+
+    function initCandles() {
+        const container = document.getElementById('candlesContainer');
+        if (!container) return;
+        
+        container.innerHTML = '';
+        candlesLit = 55;
+        updateCandlesCounter();
+        
+        // Create 55 candles in rows
+        for (let i = 0; i < 55; i++) {
+            const candle = document.createElement('div');
+            candle.className = 'candle';
+            candle.innerHTML = `
+                <div class="flame" id="flame-${i}">
+                    <div class="flame-inner"></div>
+                </div>
+                <div class="candle-body"></div>
+            `;
+            candle.onclick = () => blowSingleCandle(i);
+            container.appendChild(candle);
+        }
+    }
+
+    function blowSingleCandle(index) {
+        const flame = document.getElementById(`flame-${index}`);
+        if (flame && !flame.classList.contains('flame-off')) {
+            flame.classList.add('flame-off');
+            candlesLit--;
+            updateCandlesCounter();
+            checkAllCandlesBlown();
+        }
+    }
+
+    function blowCandles() {
+        // Blow random 5-15 candles
+        const numToBlow = 5 + Math.floor(Math.random() * 10);
+        let blown = 0;
+        
+        for (let i = 0; i < 55 && blown < numToBlow; i++) {
+            const flame = document.getElementById(`flame-${i}`);
+            if (flame && !flame.classList.contains('flame-off')) {
+                setTimeout(() => {
+                    flame.classList.add('flame-off');
+                    candlesLit--;
+                    updateCandlesCounter();
+                    checkAllCandlesBlown();
+                }, blown * 100);
+                blown++;
+            }
+        }
+    }
+
+    function updateCandlesCounter() {
+        const counter = document.getElementById('candlesLit');
+        if (counter) counter.textContent = candlesLit;
+    }
+
+    function checkAllCandlesBlown() {
+        if (candlesLit <= 0) {
+            const blowMessage = document.getElementById('blowMessage');
+            if (blowMessage) {
+                blowMessage.innerHTML = '🎉 Bravissima! Hai spento tutte le candeline! 🎂<br>Esprimi un desiderio! ✨';
+                blowMessage.style.display = 'block';
+            }
+            createConfetti();
+            createFloatingHearts();
+        }
+    }
+
+    function resetCandles() {
+        const blowMessage = document.getElementById('blowMessage');
+        if (blowMessage) blowMessage.style.display = 'none';
+        initCandles();
+    }
+
+    // Microphone blow detection
+    async function initBlowDetection() {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            analyser = audioContext.createAnalyser();
+            microphone = audioContext.createMediaStreamSource(stream);
+            microphone.connect(analyser);
+            
+            analyser.fftSize = 256;
+            const bufferLength = analyser.frequencyBinCount;
+            const dataArray = new Uint8Array(bufferLength);
+            
+            blowDetectionActive = true;
+            
+            function detectBlow() {
+                if (!blowDetectionActive) return;
+                
+                analyser.getByteFrequencyData(dataArray);
+                const average = dataArray.reduce((a, b) => a + b) / bufferLength;
+                
+                // If loud enough, blow some candles
+                if (average > 50) {
+                    blowCandles();
+                }
+                
+                requestAnimationFrame(detectBlow);
+            }
+            
+            detectBlow();
+        } catch (err) {
+            console.log('Microphone not available:', err);
+        }
+    }
+
+    // ========== SHAKE TO CELEBRATE ==========
+    let lastShakeTime = 0;
+    const shakeThreshold = 15;
+    let lastX, lastY, lastZ;
+
+    function initShakeDetection() {
+        if (window.DeviceMotionEvent) {
+            window.addEventListener('devicemotion', handleShake);
+        }
+    }
+
+    function handleShake(event) {
+        const acceleration = event.accelerationIncludingGravity;
+        if (!acceleration) return;
+        
+        const currentTime = Date.now();
+        
+        if ((currentTime - lastShakeTime) > 100) {
+            const diffTime = currentTime - lastShakeTime;
+            lastShakeTime = currentTime;
+            
+            const x = acceleration.x || 0;
+            const y = acceleration.y || 0;
+            const z = acceleration.z || 0;
+            
+            const speed = Math.abs(x + y + z - (lastX || 0) - (lastY || 0) - (lastZ || 0)) / diffTime * 10000;
+            
+            if (speed > shakeThreshold) {
+                // Shake detected - celebrate!
+                createConfetti();
+                createFloatingHearts();
+                
+                // Show shake indicator
+                let indicator = document.querySelector('.shake-indicator');
+                if (!indicator) {
+                    indicator = document.createElement('div');
+                    indicator.className = 'shake-indicator';
+                    indicator.innerHTML = '🎉 Shake! 🎉';
+                    document.body.appendChild(indicator);
+                }
+                indicator.style.display = 'block';
+                setTimeout(() => {
+                    indicator.style.display = 'none';
+                }, 1000);
+            }
+            
+            lastX = x;
+            lastY = y;
+            lastZ = z;
+        }
+    }
+
+    // ========== CURSOR SPARKLE EFFECT ==========
+    function initCursorSparkles() {
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) { // Only create sparkle 10% of the time
+                createSparkle(e.clientX, e.clientY);
+            }
+        });
+    }
+
+    function createSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, #fff 0%, #ff6b9d 50%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: sparkle 0.6s ease-out forwards;
+        `;
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => sparkle.remove(), 600);
+    }
+
+    // Add sparkle animation if not exists
+    if (!document.querySelector('#sparkle-style')) {
+        const style = document.createElement('style');
+        style.id = 'sparkle-style';
+        style.textContent = `
+            @keyframes sparkle {
+                0% { transform: scale(1); opacity: 1; }
+                100% { transform: scale(0); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // ========== PARTICLE EXPLOSION ==========
+    function createParticleExplosion(x, y, count = 30) {
+        for (let i = 0; i < count; i++) {
+            const particle = document.createElement('div');
+            const angle = (Math.PI * 2 * i) / count;
+            const velocity = 2 + Math.random() * 3;
+            const size = 4 + Math.random() * 6;
+            const color = ['#ff6b9d', '#ffc107', '#9c27b0', '#2196f3', '#4caf50'][Math.floor(Math.random() * 5)];
+            
+            particle.style.cssText = `
+                position: fixed;
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size}px;
+                background: ${color};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+            `;
+            document.body.appendChild(particle);
+            
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+            let posX = x;
+            let posY = y;
+            let opacity = 1;
+            
+            function animate() {
+                posX += vx;
+                posY += vy + 0.5; // gravity
+                opacity -= 0.02;
+                
+                if (opacity <= 0) {
+                    particle.remove();
+                    return;
+                }
+                
+                particle.style.left = posX + 'px';
+                particle.style.top = posY + 'px';
+                particle.style.opacity = opacity;
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+    }
+
+    // Add click explosion effect to buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.matches('button')) {
+            createParticleExplosion(e.clientX, e.clientY, 15);
+        }
+    });
+
+    // ========== INITIALIZE ALL NEW FEATURES ==========
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            initScratchCard();
+            initCandles();
+            initShakeDetection();
+            initCursorSparkles();
+        }, 500);
+    });
 
     // ========== PWA SERVICE WORKER ==========
     if ('serviceWorker' in navigator) {

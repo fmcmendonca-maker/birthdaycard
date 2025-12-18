@@ -1,4 +1,4 @@
-const CACHE_NAME = 'birthday-card-v2';
+const CACHE_NAME = 'birthday-card-v3';
 const urlsToCache = [
   '/',
   '/index.html',
