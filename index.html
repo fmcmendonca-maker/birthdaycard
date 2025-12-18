@@ -2929,9 +2929,12 @@
     </div>
 </div>
 
-<!-- Audio Element -->
+<!-- Audio Elements -->
 <audio id="backgroundMusic" loop preload="auto">
     <source src="music/17 Ordinary Love.mp3" type="audio/mpeg">
+</audio>
+<audio id="partyMusic" loop preload="auto">
+    <source src="music/10. Dancing On The Ceiling (12 Version).mp3" type="audio/mpeg">
 </audio>
 
 </div><!-- End main-content -->
@@ -3413,25 +3416,30 @@
 
     // ========== MUSIC PLAYER ==========
     const backgroundMusic = document.getElementById('backgroundMusic');
+    const partyMusic = document.getElementById('partyMusic');
     const musicBtn = document.getElementById('musicBtn');
     const musicIcon = document.getElementById('musicIcon');
     const musicPlayer = document.getElementById('musicPlayer');
+    const musicTitle = document.querySelector('.music-title');
+    const musicArtist = document.querySelector('.music-artist');
     let isMusicPlaying = false;
     let isPlayingInProgress = false;
+    let currentAudio = backgroundMusic; // Start with Ordinary Love
+    let isPartyMode = false;
 
     function toggleMusic() {
         // Prevent multiple simultaneous calls
         if (isPlayingInProgress) return;
         
         if (isMusicPlaying) {
-            backgroundMusic.pause();
+            currentAudio.pause();
             musicIcon.textContent = '▶';
             musicBtn.classList.remove('playing');
             musicPlayer.classList.remove('playing');
             isMusicPlaying = false;
         } else {
             isPlayingInProgress = true;
-            backgroundMusic.play().then(() => {
+            currentAudio.play().then(() => {
                 musicIcon.textContent = '⏸';
                 musicBtn.classList.add('playing');
                 musicPlayer.classList.add('playing');
@@ -3445,12 +3453,47 @@
         }
     }
 
+    // Switch to party music (Dancing on the Ceiling) when game is played
+    function switchToPartyMusic() {
+        if (isPartyMode) return; // Already in party mode
+        
+        const wasPlaying = isMusicPlaying;
+        const currentTime = currentAudio.currentTime;
+        
+        // Pause current music
+        if (isMusicPlaying) {
+            currentAudio.pause();
+        }
+        
+        // Switch to party music
+        currentAudio = partyMusic;
+        isPartyMode = true;
+        
+        // Update display
+        if (musicTitle) musicTitle.textContent = 'Dancing on the Ceiling';
+        if (musicArtist) musicArtist.textContent = 'Lionel Richie';
+        
+        // Resume playing if it was playing
+        if (wasPlaying) {
+            currentAudio.play().then(() => {
+                musicIcon.textContent = '⏸';
+                musicBtn.classList.add('playing');
+                musicPlayer.classList.add('playing');
+                isMusicPlaying = true;
+            }).catch(err => {
+                console.log('Party music play failed:', err);
+            });
+        }
+        
+        console.log('🎉 Switched to party music!');
+    }
+
     // Start music function (called after envelope opens)
     function startMusic() {
         if (isMusicPlaying || isPlayingInProgress) return;
         
         isPlayingInProgress = true;
-        backgroundMusic.play().then(() => {
+        currentAudio.play().then(() => {
             musicIcon.textContent = '⏸';
             musicBtn.classList.add('playing');
             musicPlayer.classList.add('playing');
@@ -3700,38 +3743,56 @@
         e.preventDefault();
         console.log('startScratch called');
         isScratching = true;
+        
+        // Switch to party music when playing games!
+        switchToPartyMusic();
+        
         scratch(e);
     }
 
     function scratch(e) {
         if (!isScratching || !scratchCtx) return;
         e.preventDefault();
+        e.stopPropagation();
         
         const rect = scratchCanvas.getBoundingClientRect();
-        let x, y;
+        let clientX, clientY;
         
-        if (e.touches) {
-            x = e.touches[0].clientX - rect.left;
-            y = e.touches[0].clientY - rect.top;
+        if (e.touches && e.touches.length > 0) {
+            clientX = e.touches[0].clientX;
+            clientY = e.touches[0].clientY;
         } else {
-            x = e.clientX - rect.left;
-            y = e.clientY - rect.top;
+            clientX = e.clientX;
+            clientY = e.clientY;
         }
         
-        // Scale coordinates to canvas size
-        x = x * (scratchCanvas.width / rect.width);
-        y = y * (scratchCanvas.height / rect.height);
+        // Calculate position relative to canvas element
+        const x = (clientX - rect.left) * (scratchCanvas.width / rect.width);
+        const y = (clientY - rect.top) * (scratchCanvas.height / rect.height);
         
-        console.log('Scratching at:', x, y);
-        
+        // Erase at the scratch position
         scratchCtx.globalCompositeOperation = 'destination-out';
         scratchCtx.beginPath();
-        scratchCtx.arc(x, y, 25, 0, Math.PI * 2);
+        scratchCtx.arc(x, y, 30, 0, Math.PI * 2);
         scratchCtx.fill();
+        
+        // Also draw a line to previous position for smoother scratching
+        if (scratch.lastX !== undefined) {
+            scratchCtx.beginPath();
+            scratchCtx.lineWidth = 50;
+            scratchCtx.lineCap = 'round';
+            scratchCtx.moveTo(scratch.lastX, scratch.lastY);
+            scratchCtx.lineTo(x, y);
+            scratchCtx.stroke();
+        }
+        scratch.lastX = x;
+        scratch.lastY = y;
     }
 
     function stopScratch() {
         isScratching = false;
+        scratch.lastX = undefined;
+        scratch.lastY = undefined;
     }
 
     function resetScratchCard() {
@@ -3761,6 +3822,9 @@
     function spinWheel() {
         if (isSpinning) return;
         isSpinning = true;
+        
+        // Switch to party music when playing games!
+        switchToPartyMusic();
         
         const spinBtn = document.getElementById('spinBtn');
         const wheel = document.getElementById('wheel');
@@ -3883,6 +3947,9 @@
     }
 
     function blowCandles() {
+        // Switch to party music when playing games!
+        switchToPartyMusic();
+        
         // Blow random 5-15 candles
         const numToBlow = 5 + Math.floor(Math.random() * 10);
         let blown = 0;
