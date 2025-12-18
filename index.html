@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#ff6b9d">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Compleanno 55">
+<meta name="apple-mobile-web-app-title" content="Compleanno 56">
 <link rel="apple-touch-icon" href="icon-192.png">
 
 <!-- Google Fonts -->
@@ -1036,6 +1036,41 @@
         letter-spacing: 3px;
     }
 
+    /* PWA Install Button */
+    .install-btn {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 30px;
+        padding: 15px 35px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        transition: all 0.3s ease;
+        animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .install-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    }
+
+    @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4); }
+        50% { box-shadow: 0 10px 40px rgba(118, 75, 162, 0.6); }
+    }
+
+    .install-btn .install-icon {
+        font-size: 1.2rem;
+    }
+
     /* Floating Hearts Animation */
     .floating-hearts {
         position: fixed;
@@ -1507,14 +1542,6 @@
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .scratch-canvas {
-        position: absolute;
-        top: 0;
-        left: 0;
-        cursor: crosshair;
-        border-radius: 20px;
-    }
-
     .scratch-hint {
         margin-top: 15px;
         font-size: 0.9rem;
@@ -1556,6 +1583,21 @@
         font-size: 1.5rem;
         color: #fff;
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .scratch-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: crosshair;
+        border-radius: 20px;
+        z-index: 10;
+        touch-action: none;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
     }
 
     .scratch-btn {
@@ -1713,7 +1755,7 @@
     }
 
     .spin-btn {
-        margin-top: 30px;
+        margin-bottom: 30px;
         padding: 18px 50px;
         background: linear-gradient(135deg, #9c27b0, #ff6b9d);
         border: none;
@@ -2745,6 +2787,8 @@
         <h2>🎡 Ruota della Fortuna 🎡</h2>
         <p class="section-subtitle">Gira la ruota per scoprire cosa ti aspetta!</p>
         
+        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎰 Gira la Ruota!</button>
+        
         <div class="wheel-container">
             <div class="wheel-pointer">▼</div>
             <div class="wheel" id="wheel">
@@ -2774,8 +2818,6 @@
                 </div>
             </div>
         </div>
-        
-        <button class="spin-btn" id="spinBtn" onclick="spinWheel()">🎰 Gira la Ruota!</button>
         
         <div class="wheel-result" id="wheelResult"></div>
     </div>
@@ -2864,6 +2906,10 @@
     <p class="footer-message">Con tutto il mio amore, oggi e per sempre</p>
     <p class="footer-signature">Il tuo amore</p>
     <p class="footer-date">18 Dicembre 2025</p>
+    <button class="install-btn" id="installBtn" onclick="installPWA()">
+        <span class="install-icon">📲</span>
+        <span>Installa sul Telefono</span>
+    </button>
 </footer>
 
 <!-- Music Player -->
@@ -2885,7 +2931,7 @@
 
 <!-- Audio Element -->
 <audio id="backgroundMusic" loop preload="auto">
-    <source src="https://cs1.mp3.pm/download/6316200/SmhxL3lZSTVrdGpVU3A1RFdTclpITHh6VktYL1c3N1ExdUNQemZ5cHR4QXlJQ3NxN3RFcExpaVk5NlNqK2xYQjNjR0l3S0daR2xVSWNVYjl2ZGpTYWpFZmp3Tll2SUdVNTRwMGxhVnBVaGM9/U2_-_Ordinary_Love_(mp3.pm).mp3" type="audio/mpeg">
+    <source src="music/17 Ordinary Love.mp3" type="audio/mpeg">
 </audio>
 
 </div><!-- End main-content -->
@@ -3589,6 +3635,7 @@
     // ========== SCRATCH CARD ==========
     let isScratching = false;
     let scratchCanvas, scratchCtx;
+    let scratchInitialized = false;
     const scratchMessages = [
         { emoji: '💖', text: 'Sei la cosa più bella che mi sia mai capitata nella vita!' },
         { emoji: '🌟', text: 'Ogni giorno con te è un regalo prezioso!' },
@@ -3604,11 +3651,17 @@
 
     function initScratchCard() {
         scratchCanvas = document.getElementById('scratchCanvas');
+        console.log('initScratchCard called, canvas:', scratchCanvas);
         if (!scratchCanvas) return;
         
         scratchCtx = scratchCanvas.getContext('2d');
         scratchCanvas.width = 300;
         scratchCanvas.height = 200;
+        
+        console.log('Canvas initialized:', scratchCanvas.width, 'x', scratchCanvas.height);
+        
+        // Reset composite operation
+        scratchCtx.globalCompositeOperation = 'source-over';
         
         // Draw scratch surface
         const gradient = scratchCtx.createLinearGradient(0, 0, 300, 200);
@@ -3626,25 +3679,33 @@
         scratchCtx.font = '14px Arial';
         scratchCtx.fillText('Scopri il messaggio', 150, 130);
         
-        // Mouse events
-        scratchCanvas.addEventListener('mousedown', startScratch);
-        scratchCanvas.addEventListener('mousemove', scratch);
-        scratchCanvas.addEventListener('mouseup', stopScratch);
-        scratchCanvas.addEventListener('mouseleave', stopScratch);
-        
-        // Touch events
-        scratchCanvas.addEventListener('touchstart', startScratch);
-        scratchCanvas.addEventListener('touchmove', scratch);
-        scratchCanvas.addEventListener('touchend', stopScratch);
+        // Only add event listeners once
+        if (!scratchInitialized) {
+            // Mouse events
+            scratchCanvas.addEventListener('mousedown', startScratch);
+            scratchCanvas.addEventListener('mousemove', scratch);
+            scratchCanvas.addEventListener('mouseup', stopScratch);
+            scratchCanvas.addEventListener('mouseleave', stopScratch);
+            
+            // Touch events
+            scratchCanvas.addEventListener('touchstart', startScratch, { passive: false });
+            scratchCanvas.addEventListener('touchmove', scratch, { passive: false });
+            scratchCanvas.addEventListener('touchend', stopScratch);
+            
+            scratchInitialized = true;
+        }
     }
 
     function startScratch(e) {
+        e.preventDefault();
+        console.log('startScratch called');
         isScratching = true;
         scratch(e);
     }
 
     function scratch(e) {
-        if (!isScratching) return;
+        if (!isScratching || !scratchCtx) return;
+        e.preventDefault();
         
         const rect = scratchCanvas.getBoundingClientRect();
         let x, y;
@@ -3656,6 +3717,12 @@
             x = e.clientX - rect.left;
             y = e.clientY - rect.top;
         }
+        
+        // Scale coordinates to canvas size
+        x = x * (scratchCanvas.width / rect.width);
+        y = y * (scratchCanvas.height / rect.height);
+        
+        console.log('Scratching at:', x, y);
         
         scratchCtx.globalCompositeOperation = 'destination-out';
         scratchCtx.beginPath();
@@ -4051,17 +4118,79 @@
         }, 500);
     });
 
-    // ========== PWA SERVICE WORKER ==========
+    // ========== PWA SERVICE WORKER & INSTALL ==========
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    // Listen for the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('beforeinstallprompt fired');
+        // Prevent Chrome 67+ from automatically showing the prompt
+        e.preventDefault();
+        // Save the event so it can be triggered later
+        deferredPrompt = e;
+        // Show the install button
+        installBtn.style.display = 'inline-flex';
+    });
+
+    // Install button click handler
+    function installPWA() {
+        if (deferredPrompt) {
+            // Show the install prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                    installBtn.style.display = 'none';
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            // For iOS or browsers that don't support beforeinstallprompt
+            alert('Per installare questa app:\n\n📱 iPhone/iPad: Tocca il pulsante Condividi e poi "Aggiungi a Home"\n\n🤖 Android: Tocca il menu (⋮) e poi "Installa app"');
+        }
+    }
+
+    // Listen for successful installation
+    window.addEventListener('appinstalled', (evt) => {
+        console.log('App was installed');
+        installBtn.style.display = 'none';
+        // Show celebration
+        createConfetti();
+    });
+
+    // Register service worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('sw.js')
                 .then(registration => {
                     console.log('SW registered:', registration.scope);
+                    // Check for updates
+                    registration.onupdatefound = () => {
+                        const installingWorker = registration.installing;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    console.log('New content available, refresh for update');
+                                }
+                            }
+                        };
+                    };
                 })
                 .catch(err => {
                     console.log('SW registration failed:', err);
                 });
         });
+    }
+
+    // Check if running as installed PWA
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('Running as installed PWA');
+        // Hide install button if already installed
+        installBtn.style.display = 'none';
     }
 </script>
 

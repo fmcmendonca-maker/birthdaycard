@@ -1,8 +1,9 @@
 {
   "name": "Buon Compleanno Amore Mio",
-  "short_name": "Compleanno 55",
-  "description": "Un biglietto d'auguri speciale per il 55° compleanno",
-  "start_url": "/index.html",
+  "short_name": "Compleanno 56",
+  "description": "Un biglietto d'auguri speciale per il 56° compleanno",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#1a1a2e",
   "theme_color": "#ff6b9d",

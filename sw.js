@@ -1,10 +1,11 @@
-const CACHE_NAME = 'birthday-card-v3';
+const CACHE_NAME = 'birthday-card-v5';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './music/17 Ordinary Love.mp3'
 ];
 
 // Install event - cache files
