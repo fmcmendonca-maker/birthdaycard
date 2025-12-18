@@ -2484,25 +2484,50 @@
     const musicIcon = document.getElementById('musicIcon');
     const musicPlayer = document.getElementById('musicPlayer');
     let isMusicPlaying = false;
+    let isPlayingInProgress = false;
 
     function toggleMusic() {
+        // Prevent multiple simultaneous calls
+        if (isPlayingInProgress) return;
+        
         if (isMusicPlaying) {
             backgroundMusic.pause();
             musicIcon.textContent = '▶';
             musicBtn.classList.remove('playing');
             musicPlayer.classList.remove('playing');
+            isMusicPlaying = false;
         } else {
+            isPlayingInProgress = true;
             backgroundMusic.play().then(() => {
                 musicIcon.textContent = '⏸';
                 musicBtn.classList.add('playing');
                 musicPlayer.classList.add('playing');
+                isMusicPlaying = true;
+                isPlayingInProgress = false;
             }).catch(err => {
                 console.log('Audio play failed:', err);
-                // Show user-friendly message
-                alert('Tocca di nuovo per avviare la musica 🎵');
+                isPlayingInProgress = false;
+                isMusicPlaying = false;
             });
         }
-        isMusicPlaying = !isMusicPlaying;
+    }
+
+    // Start music function (called after envelope opens)
+    function startMusic() {
+        if (isMusicPlaying || isPlayingInProgress) return;
+        
+        isPlayingInProgress = true;
+        backgroundMusic.play().then(() => {
+            musicIcon.textContent = '⏸';
+            musicBtn.classList.add('playing');
+            musicPlayer.classList.add('playing');
+            isMusicPlaying = true;
+            isPlayingInProgress = false;
+        }).catch(err => {
+            console.log('Auto-play blocked, user will need to click:', err.name);
+            isPlayingInProgress = false;
+            isMusicPlaying = false;
+        });
     }
 
     // Auto-play music when envelope opens (with user interaction)
@@ -2510,11 +2535,7 @@
     openEnvelope = function() {
         originalOpenEnvelope();
         // Try to start music after envelope opens
-        setTimeout(() => {
-            if (!isMusicPlaying) {
-                toggleMusic();
-            }
-        }, 1500);
+        setTimeout(startMusic, 1500);
     };
 
     // ========== CURSOR SPARKLE EFFECT ==========
