@@ -1107,7 +1107,7 @@
     }
 
     /* Canvas for Fireworks */
-    canvas {
+    #fireworks-canvas {
         position: fixed;
         top: 0;
         left: 0;
@@ -1589,8 +1589,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 300px;
+        height: 200px;
         cursor: crosshair;
         border-radius: 20px;
         z-index: 10;
@@ -1598,6 +1598,8 @@
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
+        -ms-touch-action: none;
+        pointer-events: auto !important;
     }
 
     .scratch-btn {
@@ -1755,6 +1757,8 @@
     }
 
     .spin-btn {
+        position: relative;
+        z-index: 20;
         margin-bottom: 30px;
         padding: 18px 50px;
         background: linear-gradient(135deg, #9c27b0, #ff6b9d);
@@ -2070,6 +2074,32 @@
         box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
     }
 
+    .blow-all-btn {
+        margin-top: 10px;
+        margin-left: 10px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, #e91e63, #ff5722);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .blow-all-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(233, 30, 99, 0.6);
+    }
+
+    @keyframes pulse-glow {
+        0%, 100% { box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4); }
+        50% { box-shadow: 0 10px 40px rgba(233, 30, 99, 0.7), 0 0 20px rgba(255, 87, 34, 0.5); }
+    }
+
     .candles-reset-btn {
         margin-top: 10px;
         margin-left: 10px;
@@ -2098,7 +2128,7 @@
 
     .cake-layers {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
     }
 
@@ -2117,14 +2147,14 @@
         width: 250px;
         height: 50px;
         background: linear-gradient(180deg, #f5e6d3, #e8d5c4);
-        margin-top: -5px;
+        margin-bottom: -5px;
     }
 
     .cake-layer.layer-3 {
         width: 200px;
         height: 45px;
         background: linear-gradient(180deg, #ffc107, #ff9800);
-        margin-top: -5px;
+        margin-bottom: -5px;
     }
 
     .candle {
@@ -2448,6 +2478,296 @@
         color: rgba(255, 255, 255, 0.8);
         font-size: 1.1rem;
     }
+
+    /* ========== GUESTBOOK ========== */
+    .guestbook-hint {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 25px;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .guestbook-hint:hover {
+        color: #ff6b9d;
+        border-color: rgba(255, 107, 157, 0.5);
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .guestbook-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .guestbook-section h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 15px;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .guestbook-subtitle {
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 40px;
+        font-size: 1.1rem;
+    }
+
+    .guestbook-container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .guestbook-form {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 25px;
+        padding: 35px;
+        margin-bottom: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .guestbook-form h3 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2rem;
+        color: #ff6b9d;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 107, 157, 0.3);
+        border-radius: 12px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #ff6b9d;
+        box-shadow: 0 0 20px rgba(255, 107, 157, 0.3);
+    }
+
+    .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .emoji-picker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .emoji-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid transparent;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .emoji-btn:hover,
+    .emoji-btn.selected {
+        background: rgba(255, 107, 157, 0.3);
+        border-color: #ff6b9d;
+        transform: scale(1.1);
+    }
+
+    .submit-message-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 18px 45px;
+        background: linear-gradient(135deg, #ff6b9d, #c084fc);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .submit-message-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    .submit-message-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .guestbook-messages {
+        max-height: 500px;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .guestbook-messages::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .guestbook-messages::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    .guestbook-messages::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #ff6b9d, #c084fc);
+        border-radius: 10px;
+    }
+
+    .message-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 20px;
+        text-align: left;
+        position: relative;
+        transition: all 0.3s ease;
+        animation: fadeInUp 0.5s ease;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .message-card:hover {
+        border-color: rgba(255, 107, 157, 0.3);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .message-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+
+    .message-emoji {
+        font-size: 2.5rem;
+        filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.5));
+    }
+
+    .message-info {
+        flex: 1;
+    }
+
+    .message-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.2rem;
+        color: #ff6b9d;
+        margin-bottom: 5px;
+    }
+
+    .message-date {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .message-text {
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.7;
+        font-size: 1rem;
+    }
+
+    .no-messages {
+        text-align: center;
+        padding: 40px;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .no-messages-icon {
+        font-size: 4rem;
+        margin-bottom: 15px;
+        opacity: 0.5;
+    }
+
+    .loading-messages {
+        text-align: center;
+        padding: 40px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 107, 157, 0.3);
+        border-top-color: #ff6b9d;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    .message-success {
+        background: rgba(0, 255, 136, 0.2);
+        border: 1px solid rgba(0, 255, 136, 0.5);
+        border-radius: 12px;
+        padding: 15px;
+        color: #00ff88;
+        margin-top: 15px;
+        display: none;
+    }
+
+    .message-error {
+        background: rgba(255, 68, 68, 0.2);
+        border: 1px solid rgba(255, 68, 68, 0.5);
+        border-radius: 12px;
+        padding: 15px;
+        color: #ff4444;
+        margin-top: 15px;
+        display: none;
+    }
 </style>
 </head>
 
@@ -2503,8 +2823,9 @@
     <h1>Per la Donna della Mia Vita</h1>
     <div class="script-title">Buon Compleanno</div>
     <p class="subtitle">
-        <span class="age-highlight">55</span> anni di eleganza, bellezza e amore infinito
+        <span class="age-highlight">56</span> anni di eleganza, bellezza e amore infinito
     </p>
+    <a href="#guestbook" class="guestbook-hint">💌 Lascia un messaggio</a>
 </header>
 
 <div class="container">
@@ -2686,34 +3007,20 @@
             <img src="fotos/IMG_2889.jpg" alt="Ricordo" loading="lazy">
         </div>
         <div class="photo-card" onclick="openLightbox(this)">
-            <img src="fotos/IMG_2894.jpg" alt="Ricordo" loading="lazy">
+            <img src="fotos/IMG_2894-99.jpg" alt="Ricordo" loading="lazy">
         </div>
         <div class="photo-card" onclick="openLightbox(this)">
             <img src="fotos/IMG_2901.jpg" alt="Ricordo" loading="lazy">
         </div>
-        <!-- Videos -->
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_0070.MP4">
-            <img src="fotos/IMG_0070.jpg" alt="Video" loading="lazy">
-            <span class="video-indicator">▶</span>
+        <div class="photo-card" onclick="openLightbox(this)">
+            <img src="fotos/IMG_2123.JPG" alt="Ricordo" loading="lazy">
         </div>
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_0085.MP4">
-            <img src="fotos/IMG_0085.jpg" alt="Video" loading="lazy">
-            <span class="video-indicator">▶</span>
+        <div class="photo-card" onclick="openLightbox(this)">
+            <img src="fotos/IMGP0265_2.jpg" alt="Ricordo" loading="lazy">
         </div>
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_0689.MOV">
-            <img src="fotos/IMG_0696.JPG" alt="Video" loading="lazy">
-            <span class="video-indicator">▶</span>
-        </div>
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_2889.MP4">
+        <!-- Video -->
+        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/33AFF030-77C7-497F-9A4D-B3CA15334DB7_3.mov">
             <img src="fotos/IMG_2889.jpg" alt="Video" loading="lazy">
-            <span class="video-indicator">▶</span>
-        </div>
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_2894.MP4">
-            <img src="fotos/IMG_2894.jpg" alt="Video" loading="lazy">
-            <span class="video-indicator">▶</span>
-        </div>
-        <div class="photo-card video-card" onclick="openLightbox(this)" data-video="fotos/IMG_2901.MP4">
-            <img src="fotos/IMG_2901.jpg" alt="Video" loading="lazy">
             <span class="video-indicator">▶</span>
         </div>
     </div>
@@ -2768,7 +3075,7 @@
                 <div class="scratch-emoji">💖</div>
                 <div class="scratch-text">Sei la cosa più bella che mi sia mai capitata nella vita!</div>
             </div>
-            <canvas class="scratch-canvas" id="scratchCanvas"></canvas>
+            <canvas class="scratch-canvas" id="scratchCanvas" width="300" height="200"></canvas>
         </div>
         
         <button class="scratch-btn" onclick="resetScratchCard()">🔄 Nuova Carta</button>
@@ -2856,7 +3163,7 @@
 <!-- VIRTUAL CANDLES SECTION -->
 <section class="candles-section">
     <div class="container">
-        <h2>🎂 55 Candeline 🎂</h2>
+        <h2>🎂 56 Candeline 🎂</h2>
         <p class="section-subtitle">Soffia sulle candeline per spegnerle! (usa il microfono o clicca)</p>
         
         <div class="birthday-cake" id="birthdayCake">
@@ -2871,10 +3178,11 @@
         </div>
         
         <div class="candles-counter">
-            <span id="candlesLit">55</span> candeline accese
+            <span id="candlesLit">56</span> candeline accese
         </div>
         
         <button class="blow-btn" id="blowBtn" onclick="blowCandles()">💨 Soffia!</button>
+        <button class="blow-all-btn" onclick="blowAllCandles()">🌬️ Soffia Forte!</button>
         <button class="candles-reset-btn" onclick="resetCandles()">🔄 Riaccendi</button>
         
         <div class="blow-message" id="blowMessage"></div>
@@ -2900,6 +3208,69 @@
     <img src="" alt="Foto" id="lightboxImg">
     <video src="" id="lightboxVideo" controls style="display:none;"></video>
 </div>
+
+<!-- ========== GUESTBOOK ========== -->
+<section class="guestbook-section" id="guestbook">
+    <div class="divider">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">💌</div>
+        <div class="divider-line"></div>
+    </div>
+    
+    <h2>✨ Libro degli Ospiti ✨</h2>
+    <p class="guestbook-subtitle">Lascia un messaggio d'auguri per la festeggiata!</p>
+    
+    <div class="guestbook-container">
+        <!-- Form -->
+        <div class="guestbook-form">
+            <h3>Scrivi il tuo messaggio 💕</h3>
+            
+            <div class="form-group">
+                <label for="guestName">Il tuo nome</label>
+                <input type="text" id="guestName" placeholder="Come ti chiami?" maxlength="50">
+            </div>
+            
+            <div class="form-group">
+                <label for="guestMessage">Il tuo messaggio</label>
+                <textarea id="guestMessage" placeholder="Scrivi i tuoi auguri..." maxlength="500"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Scegli un'emoji</label>
+                <div class="emoji-picker">
+                    <button type="button" class="emoji-btn selected" data-emoji="💕">💕</button>
+                    <button type="button" class="emoji-btn" data-emoji="🎂">🎂</button>
+                    <button type="button" class="emoji-btn" data-emoji="🎉">🎉</button>
+                    <button type="button" class="emoji-btn" data-emoji="💖">💖</button>
+                    <button type="button" class="emoji-btn" data-emoji="🌹">🌹</button>
+                    <button type="button" class="emoji-btn" data-emoji="✨">✨</button>
+                    <button type="button" class="emoji-btn" data-emoji="🥳">🥳</button>
+                    <button type="button" class="emoji-btn" data-emoji="💐">💐</button>
+                </div>
+            </div>
+            
+            <button class="submit-message-btn" id="submitMessageBtn" onclick="submitGuestMessage()">
+                <span>Invia Auguri</span>
+                <span>💌</span>
+            </button>
+            
+            <div class="message-success" id="messageSuccess">
+                ✅ Messaggio inviato con successo! Grazie per gli auguri!
+            </div>
+            <div class="message-error" id="messageError">
+                ❌ Errore nell'invio. Riprova più tardi.
+            </div>
+        </div>
+        
+        <!-- Messages List -->
+        <div class="guestbook-messages" id="guestbookMessages">
+            <div class="loading-messages">
+                <div class="loading-spinner"></div>
+                <p>Caricamento messaggi...</p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer>
     <div class="footer-heart">💝</div>
@@ -2929,12 +3300,12 @@
     </div>
 </div>
 
-<!-- Audio Elements -->
-<audio id="backgroundMusic" loop preload="auto">
-    <source src="music/17 Ordinary Love.mp3" type="audio/mpeg">
+<!-- Audio Elements (preload=none for faster initial load) -->
+<audio id="backgroundMusic" loop preload="none">
+    <source src="music/17-Ordinary-Love.mp3" type="audio/mpeg">
 </audio>
-<audio id="partyMusic" loop preload="auto">
-    <source src="music/10. Dancing On The Ceiling (12 Version).mp3" type="audio/mpeg">
+<audio id="partyMusic" loop preload="none">
+    <source src="music/10-Dancing-On-The-Ceiling-12-Ver.mp3" type="audio/mpeg">
 </audio>
 
 </div><!-- End main-content -->
@@ -2976,10 +3347,10 @@
     }
 
     function initializeMainContent() {
-        // Create stars
+        // Create stars (reduced for performance)
         const starsContainer = document.getElementById('stars');
         if (starsContainer) {
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < 50; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = Math.random() * 100 + 'vw';
@@ -2990,10 +3361,10 @@
             }
         }
 
-        // Create floating particles
+        // Create floating particles (reduced for performance)
         const particlesContainer = document.getElementById('particles');
         if (particlesContainer) {
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 10; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + 'vw';
@@ -3005,7 +3376,7 @@
             }
         }
 
-        // Shooting stars
+        // Shooting stars (reduced frequency for performance)
         function createShootingStar() {
             const mainContent = document.getElementById('mainContent');
             if (!mainContent.classList.contains('visible')) return;
@@ -3016,7 +3387,7 @@
             document.body.appendChild(star);
             setTimeout(() => star.remove(), 1000);
         }
-        setInterval(createShootingStar, 3000);
+        setInterval(createShootingStar, 6000);
     } // End initializeMainContent
 
     const slider = document.getElementById('ageSlider');
@@ -3085,6 +3456,9 @@
 
     function startCountdown() {
         if (isAnimating || hasTriggered) return;
+        
+        // Switch to party music when celebration starts!
+        switchToPartyMusic();
         
         isAnimating = true;
         celebrateBtn.disabled = true;
@@ -3210,7 +3584,8 @@
         floatingHearts.style.display = 'block';
         const hearts = ['❤️', '💕', '💖', '💗', '💝', '✨', '🌟', '💫', '🌹', '🎉'];
         
-        for (let i = 0; i < 40; i++) {
+        // Reduced from 40 to 20 for performance
+        for (let i = 0; i < 20; i++) {
             setTimeout(() => {
                 const heart = document.createElement('div');
                 heart.className = 'heart';
@@ -3229,7 +3604,8 @@
         const colors = ['#ff6b9d', '#ffc107', '#c084fc', '#00ff88', '#00d4ff', '#ff9999', '#ffcc99'];
         const shapes = ['50%', '0'];
         
-        for (let i = 0; i < 120; i++) {
+        // Reduced from 120 to 60 for performance
+        for (let i = 0; i < 60; i++) {
             setTimeout(() => {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -3262,8 +3638,8 @@
         const colors = ['#ff6b9d', '#ffc107', '#c084fc', '#00ff88', '#00d4ff', '#ff4444', '#44ff44'];
         let particles = [];
         
-        // Create multiple explosion points
-        const numExplosions = 6 + Math.floor(Math.random() * 4);
+        // Reduced explosions for performance
+        const numExplosions = 3 + Math.floor(Math.random() * 3);
         const explosionPoints = [];
         
         for (let i = 0; i < numExplosions; i++) {
@@ -3276,7 +3652,8 @@
         explosionPoints.forEach((point, index) => {
             setTimeout(() => {
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                const particleCount = 80 + Math.floor(Math.random() * 40);
+                // Reduced from 80-120 to 40-60 particles
+                const particleCount = 40 + Math.floor(Math.random() * 20);
                 
                 for (let i = 0; i < particleCount; i++) {
                     const angle = (Math.PI * 2 * i) / particleCount;
@@ -3518,7 +3895,7 @@
     let lastSparkleTime = 0;
     document.addEventListener('mousemove', (e) => {
         const now = Date.now();
-        if (now - lastSparkleTime < 50) return; // Throttle
+        if (now - lastSparkleTime < 100) return; // Throttle increased for performance
         lastSparkleTime = now;
         
         const sparkle = document.createElement('div');
@@ -3575,6 +3952,9 @@
     let canFlip = true;
 
     function initMemoryGame() {
+        // Switch to party music when playing!
+        switchToPartyMusic();
+        
         const board = document.getElementById('memoryBoard');
         board.innerHTML = '';
         flippedCards = [];
@@ -3677,9 +4057,14 @@
 
     // ========== SCRATCH CARD ==========
     let isScratching = false;
-    let scratchCanvas, scratchCtx;
+    let scratchCanvas = null;
+    let scratchCtx = null;
     let scratchInitialized = false;
+    let lastScratchX = null;
+    let lastScratchY = null;
+    
     const scratchMessages = [
+        // Italian
         { emoji: '💖', text: 'Sei la cosa più bella che mi sia mai capitata nella vita!' },
         { emoji: '🌟', text: 'Ogni giorno con te è un regalo prezioso!' },
         { emoji: '💕', text: 'Il mio cuore batte solo per te, oggi e sempre!' },
@@ -3689,24 +4074,104 @@
         { emoji: '🌈', text: 'Sei il mio arcobaleno dopo ogni tempesta!' },
         { emoji: '⭐', text: 'Sei la stella che illumina le mie notti!' },
         { emoji: '🔥', text: 'Il nostro amore brucia più forte ogni giorno!' },
-        { emoji: '🎁', text: 'Tu sei il regalo più bello della mia vita!' }
+        { emoji: '🎁', text: 'Tu sei il regalo più bello della mia vita!' },
+        // Portuguese
+        { emoji: '💖', text: 'Você é a coisa mais linda que já me aconteceu!' },
+        { emoji: '🌟', text: 'Cada dia ao seu lado é um presente precioso!' },
+        { emoji: '💕', text: 'Meu coração bate só por você, hoje e sempre!' },
+        { emoji: '🦋', text: 'Você é minha borboleta, traz cor à minha vida!' },
+        { emoji: '🌹', text: 'Como uma rosa, você é bela e única no mundo!' },
+        { emoji: '💎', text: 'Você é meu tesouro mais precioso!' },
+        { emoji: '🌈', text: 'Você é meu arco-íris depois de cada tempestade!' },
+        { emoji: '⭐', text: 'Você é a estrela que ilumina minhas noites!' },
+        { emoji: '🔥', text: 'Nosso amor queima mais forte a cada dia!' },
+        { emoji: '🎁', text: 'Você é o presente mais lindo da minha vida!' },
+        // English
+        { emoji: '💖', text: 'You are the most beautiful thing that ever happened to me!' },
+        { emoji: '🌟', text: 'Every day with you is a precious gift!' },
+        { emoji: '💕', text: 'My heart beats only for you, today and forever!' },
+        { emoji: '🦋', text: 'You are my butterfly, bringing color to my life!' },
+        { emoji: '🌹', text: 'Like a rose, you are beautiful and unique!' },
+        { emoji: '💎', text: 'You are my most precious treasure!' },
+        { emoji: '🌈', text: 'You are my rainbow after every storm!' },
+        { emoji: '⭐', text: 'You are the star that lights up my nights!' },
+        { emoji: '🔥', text: 'Our love burns stronger every day!' },
+        { emoji: '🎁', text: 'You are the most beautiful gift of my life!' }
     ];
 
     function initScratchCard() {
         scratchCanvas = document.getElementById('scratchCanvas');
-        console.log('initScratchCard called, canvas:', scratchCanvas);
-        if (!scratchCanvas) return;
+        if (!scratchCanvas) {
+            console.error('Scratch canvas not found!');
+            return;
+        }
         
-        scratchCtx = scratchCanvas.getContext('2d');
-        scratchCanvas.width = 300;
-        scratchCanvas.height = 200;
+        scratchCtx = scratchCanvas.getContext('2d', { willReadFrequently: true });
         
-        console.log('Canvas initialized:', scratchCanvas.width, 'x', scratchCanvas.height);
+        // Draw the gold scratch surface
+        drawScratchSurface();
+        
+        // Only add event listeners once
+        if (!scratchInitialized) {
+            // Mouse events
+            scratchCanvas.onmousedown = function(e) {
+                e.preventDefault();
+                isScratching = true;
+                switchToPartyMusic();
+                doScratch(e);
+            };
+            
+            scratchCanvas.onmousemove = function(e) {
+                if (isScratching) {
+                    e.preventDefault();
+                    doScratch(e);
+                }
+            };
+            
+            scratchCanvas.onmouseup = function() {
+                isScratching = false;
+                lastScratchX = null;
+                lastScratchY = null;
+            };
+            
+            scratchCanvas.onmouseleave = function() {
+                isScratching = false;
+                lastScratchX = null;
+                lastScratchY = null;
+            };
+            
+            // Touch events
+            scratchCanvas.ontouchstart = function(e) {
+                e.preventDefault();
+                isScratching = true;
+                switchToPartyMusic();
+                doScratch(e);
+            };
+            
+            scratchCanvas.ontouchmove = function(e) {
+                if (isScratching) {
+                    e.preventDefault();
+                    doScratch(e);
+                }
+            };
+            
+            scratchCanvas.ontouchend = function() {
+                isScratching = false;
+                lastScratchX = null;
+                lastScratchY = null;
+            };
+            
+            scratchInitialized = true;
+        }
+    }
+    
+    function drawScratchSurface() {
+        if (!scratchCtx) return;
         
         // Reset composite operation
         scratchCtx.globalCompositeOperation = 'source-over';
         
-        // Draw scratch surface
+        // Draw gold gradient
         const gradient = scratchCtx.createLinearGradient(0, 0, 300, 200);
         gradient.addColorStop(0, '#c9a227');
         gradient.addColorStop(0.5, '#e8d48b');
@@ -3721,43 +4186,15 @@
         scratchCtx.fillText('✨ GRATTA QUI ✨', 150, 100);
         scratchCtx.font = '14px Arial';
         scratchCtx.fillText('Scopri il messaggio', 150, 130);
-        
-        // Only add event listeners once
-        if (!scratchInitialized) {
-            // Mouse events
-            scratchCanvas.addEventListener('mousedown', startScratch);
-            scratchCanvas.addEventListener('mousemove', scratch);
-            scratchCanvas.addEventListener('mouseup', stopScratch);
-            scratchCanvas.addEventListener('mouseleave', stopScratch);
-            
-            // Touch events
-            scratchCanvas.addEventListener('touchstart', startScratch, { passive: false });
-            scratchCanvas.addEventListener('touchmove', scratch, { passive: false });
-            scratchCanvas.addEventListener('touchend', stopScratch);
-            
-            scratchInitialized = true;
-        }
     }
 
-    function startScratch(e) {
-        e.preventDefault();
-        console.log('startScratch called');
-        isScratching = true;
-        
-        // Switch to party music when playing games!
-        switchToPartyMusic();
-        
-        scratch(e);
-    }
-
-    function scratch(e) {
-        if (!isScratching || !scratchCtx) return;
-        e.preventDefault();
-        e.stopPropagation();
+    function doScratch(e) {
+        if (!scratchCtx) return;
         
         const rect = scratchCanvas.getBoundingClientRect();
         let clientX, clientY;
         
+        // Get coordinates from mouse or touch
         if (e.touches && e.touches.length > 0) {
             clientX = e.touches[0].clientX;
             clientY = e.touches[0].clientY;
@@ -3766,43 +4203,50 @@
             clientY = e.clientY;
         }
         
-        // Calculate position relative to canvas element
-        const x = (clientX - rect.left) * (scratchCanvas.width / rect.width);
-        const y = (clientY - rect.top) * (scratchCanvas.height / rect.height);
+        // Scale coordinates to canvas size
+        const scaleX = scratchCanvas.width / rect.width;
+        const scaleY = scratchCanvas.height / rect.height;
+        const x = (clientX - rect.left) * scaleX;
+        const y = (clientY - rect.top) * scaleY;
         
-        // Erase at the scratch position
+        // Set to erase mode
         scratchCtx.globalCompositeOperation = 'destination-out';
+        
+        // Draw eraser circle
         scratchCtx.beginPath();
-        scratchCtx.arc(x, y, 30, 0, Math.PI * 2);
+        scratchCtx.arc(x, y, 20, 0, Math.PI * 2);
         scratchCtx.fill();
         
-        // Also draw a line to previous position for smoother scratching
-        if (scratch.lastX !== undefined) {
-            scratchCtx.beginPath();
-            scratchCtx.lineWidth = 50;
+        // Draw line from last position for smooth scratching
+        if (lastScratchX !== null && lastScratchY !== null) {
+            scratchCtx.lineWidth = 40;
             scratchCtx.lineCap = 'round';
-            scratchCtx.moveTo(scratch.lastX, scratch.lastY);
+            scratchCtx.lineJoin = 'round';
+            scratchCtx.beginPath();
+            scratchCtx.moveTo(lastScratchX, lastScratchY);
             scratchCtx.lineTo(x, y);
             scratchCtx.stroke();
         }
-        scratch.lastX = x;
-        scratch.lastY = y;
-    }
-
-    function stopScratch() {
-        isScratching = false;
-        scratch.lastX = undefined;
-        scratch.lastY = undefined;
+        
+        lastScratchX = x;
+        lastScratchY = y;
     }
 
     function resetScratchCard() {
+        // Switch to party music when playing!
+        switchToPartyMusic();
+        
         // Change message
         const msg = scratchMessages[Math.floor(Math.random() * scratchMessages.length)];
         document.querySelector('.scratch-emoji').textContent = msg.emoji;
         document.querySelector('.scratch-text').textContent = msg.text;
         
-        // Reinitialize canvas
-        initScratchCard();
+        // Reset scratch state
+        lastScratchX = null;
+        lastScratchY = null;
+        
+        // Redraw the scratch surface
+        drawScratchSurface();
     }
 
     // ========== SPIN THE WHEEL ==========
@@ -3864,30 +4308,72 @@
 
     // ========== LOVE LETTER GENERATOR ==========
     const letterOpenings = [
+        // Italian
         "In questo giorno speciale, voglio dirti quanto sei importante per me.",
         "Ogni volta che ti guardo, il mio cuore si riempie di gioia infinita.",
-        "55 anni di vita meravigliosa, e ogni giorno sei sempre più bella.",
+        "56 anni di vita meravigliosa, e ogni giorno sei sempre più bella.",
         "Non esistono parole sufficienti per descrivere quanto ti amo.",
-        "Sei la mia principessa, la mia regina, il mio tutto."
+        "Sei la mia principessa, la mia regina, il mio tutto.",
+        // Portuguese
+        "Neste dia especial, quero te dizer o quanto você é importante para mim.",
+        "Cada vez que olho para você, meu coração se enche de alegria infinita.",
+        "56 anos de vida maravilhosa, e a cada dia você está mais linda.",
+        "Não existem palavras suficientes para descrever o quanto te amo.",
+        "Você é minha princesa, minha rainha, meu tudo.",
+        // English
+        "On this special day, I want to tell you how important you are to me.",
+        "Every time I look at you, my heart fills with infinite joy.",
+        "56 years of wonderful life, and every day you are more beautiful.",
+        "There are no words enough to describe how much I love you.",
+        "You are my princess, my queen, my everything."
     ];
 
     const letterMiddles = [
+        // Italian
         "I tuoi occhi brillano come stelle, illuminando ogni mio giorno. Il tuo sorriso è la mia medicina, la tua voce è la mia musica preferita.",
         "Ogni momento passato insieme è un tesoro che custodisco nel cuore. Sei la persona più speciale che conosca.",
         "Mi hai insegnato cosa significa amare veramente. Con te ho scoperto la felicità più pura.",
         "Quando ti vedo, il mondo si ferma. Sei la ragione per cui sorrido ogni mattina.",
-        "La tua gentilezza, la tua forza, la tua bellezza mi conquistano ogni giorno di più."
+        "La tua gentilezza, la tua forza, la tua bellezza mi conquistano ogni giorno di più.",
+        // Portuguese
+        "Seus olhos brilham como estrelas, iluminando cada dia meu. Seu sorriso é meu remédio, sua voz é minha música favorita.",
+        "Cada momento junto é um tesouro que guardo no coração. Você é a pessoa mais especial que conheço.",
+        "Você me ensinou o que significa amar de verdade. Com você descobri a felicidade mais pura.",
+        "Quando te vejo, o mundo para. Você é a razão do meu sorriso toda manhã.",
+        "Sua gentileza, sua força, sua beleza me conquistam mais a cada dia.",
+        // English
+        "Your eyes shine like stars, lighting up my every day. Your smile is my medicine, your voice is my favorite music.",
+        "Every moment together is a treasure I keep in my heart. You are the most special person I know.",
+        "You taught me what it means to truly love. With you I discovered the purest happiness.",
+        "When I see you, the world stops. You are the reason I smile every morning.",
+        "Your kindness, your strength, your beauty conquer me more every day."
     ];
 
     const letterClosings = [
+        // Italian
         "Prometto di amarti oggi, domani e per sempre. Sei il mio destino, la mia anima gemella.",
-        "Che questi 55 anni siano solo l'inizio di infinite avventure insieme. Ti amo più della vita stessa.",
+        "Che questi 56 anni siano solo l'inizio di infinite avventure insieme. Ti amo più della vita stessa.",
         "Buon compleanno, amore mio. Che ogni tuo desiderio si avveri, perché tu meriti tutto il bello del mondo.",
         "Grazie per essere entrata nella mia vita. Sei il regalo più prezioso che potessi mai ricevere.",
-        "Con te, ogni giorno è una festa. Ti amo immensamente, mia adorata principessa."
+        "Con te, ogni giorno è una festa. Ti amo immensamente, mia adorata principessa.",
+        // Portuguese
+        "Prometo te amar hoje, amanhã e para sempre. Você é meu destino, minha alma gêmea.",
+        "Que esses 56 anos sejam apenas o começo de infinitas aventuras juntos. Te amo mais que a própria vida.",
+        "Feliz aniversário, meu amor. Que todos os seus desejos se realizem, porque você merece todo o bem do mundo.",
+        "Obrigado por entrar na minha vida. Você é o presente mais precioso que eu poderia receber.",
+        "Com você, cada dia é uma festa. Te amo imensamente, minha adorada princesa.",
+        // English
+        "I promise to love you today, tomorrow and forever. You are my destiny, my soulmate.",
+        "May these 56 years be just the beginning of endless adventures together. I love you more than life itself.",
+        "Happy birthday, my love. May all your wishes come true, because you deserve all the beauty in the world.",
+        "Thank you for coming into my life. You are the most precious gift I could ever receive.",
+        "With you, every day is a celebration. I love you immensely, my beloved princess."
     ];
 
     function generateLoveLetter() {
+        // Switch to party music when playing!
+        switchToPartyMusic();
+        
         const opening = letterOpenings[Math.floor(Math.random() * letterOpenings.length)];
         const middle = letterMiddles[Math.floor(Math.random() * letterMiddles.length)];
         const closing = letterClosings[Math.floor(Math.random() * letterClosings.length)];
@@ -3909,7 +4395,7 @@
     }
 
     // ========== VIRTUAL CANDLES ==========
-    let candlesLit = 55;
+    let candlesLit = 56;
     let audioContext, analyser, microphone;
     let blowDetectionActive = false;
 
@@ -3918,11 +4404,11 @@
         if (!container) return;
         
         container.innerHTML = '';
-        candlesLit = 55;
+        candlesLit = 56;
         updateCandlesCounter();
         
-        // Create 55 candles in rows
-        for (let i = 0; i < 55; i++) {
+        // Create 56 candles in rows
+        for (let i = 0; i < 56; i++) {
             const candle = document.createElement('div');
             candle.className = 'candle';
             candle.innerHTML = `
@@ -3946,6 +4432,27 @@
         }
     }
 
+    // Blow all candles with one click - dramatic effect!
+    function blowAllCandles() {
+        // Switch to party music when playing games!
+        switchToPartyMusic();
+        
+        // Blow all remaining candles with a wave effect
+        let delay = 0;
+        for (let i = 0; i < 56; i++) {
+            const flame = document.getElementById(`flame-${i}`);
+            if (flame && !flame.classList.contains('flame-off')) {
+                setTimeout(() => {
+                    flame.classList.add('flame-off');
+                    candlesLit--;
+                    updateCandlesCounter();
+                    checkAllCandlesBlown();
+                }, delay);
+                delay += 30; // Fast wave effect - 30ms between each candle
+            }
+        }
+    }
+
     function blowCandles() {
         // Switch to party music when playing games!
         switchToPartyMusic();
@@ -3954,7 +4461,7 @@
         const numToBlow = 5 + Math.floor(Math.random() * 10);
         let blown = 0;
         
-        for (let i = 0; i < 55 && blown < numToBlow; i++) {
+        for (let i = 0; i < 56 && blown < numToBlow; i++) {
             const flame = document.getElementById(`flame-${i}`);
             if (flame && !flame.classList.contains('flame-off')) {
                 setTimeout(() => {
@@ -3986,6 +4493,9 @@
     }
 
     function resetCandles() {
+        // Switch to party music when playing!
+        switchToPartyMusic();
+        
         const blowMessage = document.getElementById('blowMessage');
         if (blowMessage) blowMessage.style.display = 'none';
         initCandles();
@@ -4228,6 +4738,158 @@
         // Show celebration
         createConfetti();
     });
+
+    // ========== GUESTBOOK WITH SUPABASE ==========
+    const SUPABASE_URL = 'https://wrdivbjzscdabefcedtk.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyZGl2Ymp6c2NkYWJlZmNlZHRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwNTA5MTQsImV4cCI6MjA4MTYyNjkxNH0.KyVuMIn0evOiqlSIfYkzTWQD6n9Li1lkQTCY-JUWKT4';
+    
+    let selectedEmoji = '💕';
+    
+    // Emoji picker
+    document.querySelectorAll('.emoji-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            selectedEmoji = btn.dataset.emoji;
+        });
+    });
+    
+    // Load messages on page load
+    async function loadGuestMessages() {
+        const container = document.getElementById('guestbookMessages');
+        
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/messages?select=*&order=created_at.desc`, {
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+                }
+            });
+            
+            if (!response.ok) throw new Error('Failed to load messages');
+            
+            const messages = await response.json();
+            
+            if (messages.length === 0) {
+                container.innerHTML = `
+                    <div class="no-messages">
+                        <div class="no-messages-icon">💌</div>
+                        <p>Nessun messaggio ancora. Sii il primo a lasciare un augurio!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = messages.map(msg => `
+                <div class="message-card">
+                    <div class="message-header">
+                        <span class="message-emoji">${msg.emoji || '💕'}</span>
+                        <div class="message-info">
+                            <div class="message-name">${escapeHtml(msg.name)}</div>
+                            <div class="message-date">${formatDate(msg.created_at)}</div>
+                        </div>
+                    </div>
+                    <div class="message-text">${escapeHtml(msg.message)}</div>
+                </div>
+            `).join('');
+            
+        } catch (error) {
+            console.error('Error loading messages:', error);
+            container.innerHTML = `
+                <div class="no-messages">
+                    <div class="no-messages-icon">😕</div>
+                    <p>Impossibile caricare i messaggi. Riprova più tardi.</p>
+                </div>
+            `;
+        }
+    }
+    
+    // Submit new message
+    async function submitGuestMessage() {
+        const nameInput = document.getElementById('guestName');
+        const messageInput = document.getElementById('guestMessage');
+        const submitBtn = document.getElementById('submitMessageBtn');
+        const successDiv = document.getElementById('messageSuccess');
+        const errorDiv = document.getElementById('messageError');
+        
+        const name = nameInput.value.trim();
+        const message = messageInput.value.trim();
+        
+        // Validation
+        if (!name || !message) {
+            alert('Per favore, inserisci il tuo nome e un messaggio!');
+            return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span>Invio in corso...</span> ⏳';
+        successDiv.style.display = 'none';
+        errorDiv.style.display = 'none';
+        
+        try {
+            const response = await fetch(`${SUPABASE_URL}/rest/v1/messages`, {
+                method: 'POST',
+                headers: {
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    message: message,
+                    emoji: selectedEmoji
+                })
+            });
+            
+            if (!response.ok) throw new Error('Failed to submit message');
+            
+            // Success
+            successDiv.style.display = 'block';
+            nameInput.value = '';
+            messageInput.value = '';
+            
+            // Reload messages to show the new one
+            setTimeout(() => {
+                loadGuestMessages();
+                successDiv.style.display = 'none';
+            }, 2000);
+            
+            // Trigger mini celebration
+            createMiniSparkle();
+            
+        } catch (error) {
+            console.error('Error submitting message:', error);
+            errorDiv.style.display = 'block';
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<span>Invia Auguri</span> 💌';
+        }
+    }
+    
+    // Helper functions
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        const options = { 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return date.toLocaleDateString('it-IT', options);
+    }
+    
+    // Load messages when page loads (after envelope opens)
+    setTimeout(() => {
+        loadGuestMessages();
+    }, 1000);
 
     // Register service worker
     if ('serviceWorker' in navigator) {
