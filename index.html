@@ -1287,10 +1287,380 @@
             width: 100px;
         }
     }
+
+    /* ========== VISUAL ENHANCEMENTS ========== */
+    
+    /* Nebula/Galaxy Effect */
+    .nebula {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.5;
+    }
+    
+    .nebula-cloud {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        animation: nebulaFloat 20s ease-in-out infinite;
+    }
+    
+    .nebula-cloud:nth-child(1) {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(255, 107, 157, 0.4) 0%, transparent 70%);
+        top: -200px;
+        left: -200px;
+        animation-delay: 0s;
+    }
+    
+    .nebula-cloud:nth-child(2) {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(147, 112, 219, 0.4) 0%, transparent 70%);
+        top: 50%;
+        right: -150px;
+        animation-delay: -5s;
+    }
+    
+    .nebula-cloud:nth-child(3) {
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(255, 193, 7, 0.3) 0%, transparent 70%);
+        bottom: -300px;
+        left: 30%;
+        animation-delay: -10s;
+    }
+    
+    .nebula-cloud:nth-child(4) {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+        top: 40%;
+        left: 10%;
+        animation-delay: -15s;
+    }
+    
+    @keyframes nebulaFloat {
+        0%, 100% {
+            transform: translate(0, 0) scale(1);
+            opacity: 0.5;
+        }
+        25% {
+            transform: translate(50px, 30px) scale(1.1);
+            opacity: 0.6;
+        }
+        50% {
+            transform: translate(-30px, 60px) scale(0.9);
+            opacity: 0.4;
+        }
+        75% {
+            transform: translate(20px, -40px) scale(1.05);
+            opacity: 0.55;
+        }
+    }
+
+    /* Sparkle Cursor Trail */
+    .cursor-sparkle {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        pointer-events: none;
+        z-index: 9998;
+        border-radius: 50%;
+        animation: sparkleOut 0.8s ease-out forwards;
+    }
+    
+    @keyframes sparkleOut {
+        0% {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(0) rotate(180deg);
+            opacity: 0;
+        }
+    }
+
+    /* Improved Text Glow Effects */
+    .glow-text {
+        text-shadow: 
+            0 0 10px currentColor,
+            0 0 20px currentColor,
+            0 0 40px currentColor,
+            0 0 80px currentColor;
+        animation: textGlow 2s ease-in-out infinite alternate;
+    }
+    
+    @keyframes textGlow {
+        0% {
+            filter: brightness(1) drop-shadow(0 0 20px rgba(255, 107, 157, 0.6));
+        }
+        100% {
+            filter: brightness(1.2) drop-shadow(0 0 40px rgba(255, 107, 157, 0.9));
+        }
+    }
+
+    /* Floating Orbs */
+    .floating-orb {
+        position: fixed;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 2;
+        filter: blur(1px);
+        animation: orbFloat 8s ease-in-out infinite;
+    }
+    
+    @keyframes orbFloat {
+        0%, 100% { transform: translateY(0) translateX(0); }
+        25% { transform: translateY(-30px) translateX(20px); }
+        50% { transform: translateY(-15px) translateX(-15px); }
+        75% { transform: translateY(-40px) translateX(10px); }
+    }
+
+    /* Smooth Section Transitions */
+    section, .quote-card, .photo-card, .slider-container {
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Rainbow Border Animation */
+    .rainbow-border {
+        position: relative;
+    }
+    
+    .rainbow-border::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #ff6b9d, #ffc107, #c084fc, #00d4ff, #ff6b9d);
+        background-size: 400% 400%;
+        border-radius: inherit;
+        z-index: -1;
+        animation: rainbowShift 3s linear infinite;
+    }
+    
+    @keyframes rainbowShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* ========== MEMORY GAME ========== */
+    .memory-game-section {
+        padding: 80px 20px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .memory-game-section h2 {
+        font-size: 2.5rem;
+        color: #fff;
+        margin-bottom: 15px;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    .memory-subtitle {
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+    }
+
+    .memory-stats {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .stat-box {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 15px 30px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-family: 'Playfair Display', serif;
+        background: linear-gradient(90deg, #ff6b9d, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .memory-board {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        max-width: 500px;
+        margin: 0 auto 30px;
+        perspective: 1000px;
+    }
+
+    @media (max-width: 500px) {
+        .memory-board {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+    }
+
+    .memory-card {
+        aspect-ratio: 1;
+        cursor: pointer;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .memory-card.flipped {
+        transform: rotateY(180deg);
+    }
+
+    .memory-card.matched {
+        animation: matchPulse 0.5s ease-out;
+    }
+
+    @keyframes matchPulse {
+        0%, 100% { transform: rotateY(180deg) scale(1); }
+        50% { transform: rotateY(180deg) scale(1.1); }
+    }
+
+    .memory-card.matched::after {
+        content: '✨';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+        z-index: 10;
+        animation: sparkleIn 0.5s ease-out;
+    }
+
+    @keyframes sparkleIn {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    }
+
+    .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-back {
+        background: linear-gradient(135deg, #ff6b9d, #c084fc);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .card-back::before {
+        content: '💝';
+        animation: cardPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes cardPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
+    .card-front {
+        transform: rotateY(180deg);
+        background: #1a1a2e;
+    }
+
+    .card-front img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .memory-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 40px;
+        background: linear-gradient(135deg, #ff6b9d, #c084fc);
+        border: none;
+        border-radius: 50px;
+        color: #fff;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1rem;
+        letter-spacing: 2px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    }
+
+    .memory-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+    }
+
+    .memory-win-message {
+        display: none;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 107, 157, 0.3);
+        margin-top: 20px;
+    }
+
+    .memory-win-message.show {
+        display: block;
+        animation: fadeInUp 0.5s ease-out;
+    }
+
+    .win-title {
+        font-family: 'Great Vibes', cursive;
+        font-size: 3rem;
+        background: linear-gradient(90deg, #ff6b9d, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+    }
+
+    .win-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.1rem;
+    }
 </style>
 </head>
 
 <body>
+
+<!-- Nebula Background -->
+<div class="nebula">
+    <div class="nebula-cloud"></div>
+    <div class="nebula-cloud"></div>
+    <div class="nebula-cloud"></div>
+    <div class="nebula-cloud"></div>
+</div>
 
 <!-- ENVELOPE INTRO -->
 <div class="envelope-intro" id="envelopeIntro" onclick="openEnvelope()">
@@ -1549,6 +1919,44 @@
         </div>
     </div>
 </section>
+
+<!-- ========== MEMORY GAME SECTION ========== -->
+<section class="memory-game-section">
+    <div class="container">
+        <h2>🎮 Gioco della Memoria 🎮</h2>
+        <p class="memory-subtitle">Trova le coppie di foto! Un gioco speciale con i nostri ricordi ✨</p>
+        
+        <div class="memory-stats">
+            <div class="stat-box">
+                <div class="stat-label">Mosse</div>
+                <div class="stat-value" id="moveCount">0</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-label">Coppie</div>
+                <div class="stat-value"><span id="matchCount">0</span>/6</div>
+            </div>
+        </div>
+        
+        <div class="memory-board" id="memoryBoard">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+        
+        <button class="memory-btn" onclick="initMemoryGame()">
+            🔄 Nuova Partita
+        </button>
+        
+        <div class="memory-win-message" id="winMessage">
+            <div class="win-title">Bravissima! 🎉</div>
+            <div class="win-subtitle">Hai trovato tutte le coppie in <span id="finalMoves">0</span> mosse!</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider">
+    <div class="divider-line"></div>
+    <div class="divider-ornament">💫</div>
+    <div class="divider-line"></div>
+</div>
 
 <!-- Flash Photo Container -->
 <div class="flash-photo-container" id="flashPhotoContainer">
@@ -2108,6 +2516,167 @@
             }
         }, 1500);
     };
+
+    // ========== CURSOR SPARKLE EFFECT ==========
+    let lastSparkleTime = 0;
+    document.addEventListener('mousemove', (e) => {
+        const now = Date.now();
+        if (now - lastSparkleTime < 50) return; // Throttle
+        lastSparkleTime = now;
+        
+        const sparkle = document.createElement('div');
+        sparkle.className = 'cursor-sparkle';
+        sparkle.style.left = e.clientX + 'px';
+        sparkle.style.top = e.clientY + 'px';
+        
+        const colors = ['#ff6b9d', '#ffc107', '#c084fc', '#00d4ff', '#fff'];
+        sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.boxShadow = `0 0 10px ${sparkle.style.background}`;
+        
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 800);
+    });
+
+    // ========== FLOATING ORBS ==========
+    function createFloatingOrbs() {
+        const colors = [
+            'rgba(255, 107, 157, 0.3)',
+            'rgba(255, 193, 7, 0.3)',
+            'rgba(192, 132, 252, 0.3)',
+            'rgba(0, 212, 255, 0.3)'
+        ];
+        
+        for (let i = 0; i < 8; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'floating-orb';
+            orb.style.width = (20 + Math.random() * 40) + 'px';
+            orb.style.height = orb.style.width;
+            orb.style.background = `radial-gradient(circle, ${colors[i % colors.length]}, transparent)`;
+            orb.style.left = Math.random() * 100 + 'vw';
+            orb.style.top = Math.random() * 100 + 'vh';
+            orb.style.animationDelay = (Math.random() * 5) + 's';
+            orb.style.animationDuration = (6 + Math.random() * 6) + 's';
+            document.body.appendChild(orb);
+        }
+    }
+    createFloatingOrbs();
+
+    // ========== MEMORY GAME ==========
+    const memoryPhotos = [
+        'fotos/IMG_3274.JPG',
+        'fotos/IMG_2147.JPG',
+        'fotos/IMG_1713.JPG',
+        'fotos/IMG_0696.JPG',
+        'fotos/IMG_9711.jpg',
+        'fotos/DSCN6235.JPG'
+    ];
+
+    let memoryCards = [];
+    let flippedCards = [];
+    let matchedPairs = 0;
+    let moveCount = 0;
+    let canFlip = true;
+
+    function initMemoryGame() {
+        const board = document.getElementById('memoryBoard');
+        board.innerHTML = '';
+        flippedCards = [];
+        matchedPairs = 0;
+        moveCount = 0;
+        canFlip = true;
+        
+        document.getElementById('moveCount').textContent = '0';
+        document.getElementById('matchCount').textContent = '0';
+        document.getElementById('winMessage').classList.remove('show');
+        
+        // Create pairs and shuffle
+        memoryCards = [...memoryPhotos, ...memoryPhotos];
+        shuffleArray(memoryCards);
+        
+        // Create card elements
+        memoryCards.forEach((photo, index) => {
+            const card = document.createElement('div');
+            card.className = 'memory-card';
+            card.dataset.index = index;
+            card.dataset.photo = photo;
+            
+            card.innerHTML = `
+                <div class="card-face card-back"></div>
+                <div class="card-face card-front">
+                    <img src="${photo}" alt="Memory card">
+                </div>
+            `;
+            
+            card.addEventListener('click', () => flipCard(card));
+            board.appendChild(card);
+        });
+    }
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    }
+
+    function flipCard(card) {
+        if (!canFlip) return;
+        if (card.classList.contains('flipped')) return;
+        if (card.classList.contains('matched')) return;
+        if (flippedCards.length >= 2) return;
+        
+        card.classList.add('flipped');
+        flippedCards.push(card);
+        
+        if (flippedCards.length === 2) {
+            moveCount++;
+            document.getElementById('moveCount').textContent = moveCount;
+            checkMatch();
+        }
+    }
+
+    function checkMatch() {
+        canFlip = false;
+        const [card1, card2] = flippedCards;
+        
+        if (card1.dataset.photo === card2.dataset.photo) {
+            // Match found!
+            matchedPairs++;
+            document.getElementById('matchCount').textContent = matchedPairs;
+            
+            setTimeout(() => {
+                card1.classList.add('matched');
+                card2.classList.add('matched');
+                flippedCards = [];
+                canFlip = true;
+                
+                // Check win
+                if (matchedPairs === memoryPhotos.length) {
+                    setTimeout(showWinMessage, 500);
+                }
+            }, 500);
+        } else {
+            // No match
+            setTimeout(() => {
+                card1.classList.remove('flipped');
+                card2.classList.remove('flipped');
+                flippedCards = [];
+                canFlip = true;
+            }, 1000);
+        }
+    }
+
+    function showWinMessage() {
+        document.getElementById('finalMoves').textContent = moveCount;
+        document.getElementById('winMessage').classList.add('show');
+        
+        // Celebration effects
+        createConfetti();
+        createFloatingHearts();
+    }
+
+    // Initialize game on page load
+    setTimeout(initMemoryGame, 100);
 
     // ========== PWA SERVICE WORKER ==========
     if ('serviceWorker' in navigator) {

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'birthday-card-v1';
+const CACHE_NAME = 'birthday-card-v2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -22,6 +22,11 @@ self.addEventListener('install', event => {
 
 // Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', event => {
+  // Skip external URLs (like music streaming)
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
+  
   event.respondWith(
     caches.match(event.request)
       .then(response => {
@@ -41,6 +46,9 @@ self.addEventListener('fetch', event => {
                 cache.put(event.request, responseToCache);
               });
             return response;
+          })
+          .catch(err => {
+            console.log('Fetch failed:', err);
           });
       })
   );
